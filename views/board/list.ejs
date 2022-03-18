@@ -1,0 +1,119 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>게시판 정보관리</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a>게시판 관리</a>
+            </li>
+            <li class="active">
+                <strong>조회</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content">
+
+    <form id="boardlist" name="boardlist" action="/board/boards" method="post">
+
+        <div class="ibox-content m-b-sm border-bottom">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label" for="OrderNo">게시판명</label>
+                        <input type="text" name="boardName" id="boardName" class="form-control" placeholder="게시판명" value="<%=search.boardName%>">
+                    </div>
+                </div>
+                <!-- <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label" for="OrderName">아이디</label>
+                        <input type="text" name="adminid"" id="adminid" class="form-control" placeholder="상담원아이디">
+                    </div>
+                </div> -->
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label" for="MobileNo" >사용여부</label>
+                        <select id="searchuseyn" name="searchuseyn" class = "form-control m-b" >
+                            <option value=""  <% if(search.isUseYN == ""){ %> selected <% } %> >전체</option>
+                            <option value="1"  <% if(search.isUseYN == "1"){ %> selected <% } %> >사용함</option>
+                            <option value="0"  <% if(search.isUseYN == "0"){ %> selected <% } %> >사용안함</option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row aligncenter">
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">조회</button>
+                    <a href="/board/boardManage" class="btn btn-info">신규</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="table-responsive">
+
+                        <table class="footable table table-hover" data-page-size="15">
+                            <thead>
+                                <tr>
+                                    <th data-sort-ignore="true">등록자</th>
+                                    <th data-sort-ignore="true" data-hide="phone" >등록일</th>
+
+                                    <th data-toggle="true" data-sort-ignore="true" width="50%">게시판명</th>
+                                    <th data-sort-ignore="true">사용여부</th>
+
+                                    <th data-sort-ignore="true">수정자</th>
+                                    <th data-hide="phone" data-sort-ignore="true">수정일</th>
+                                </tr>
+                            </thead>
+                            <tbody class="hoverTblBody">
+                                <% for (var i = 0;i < data.length;i++){ %> 
+                                    <tr>
+                                        <td><%=data[i].createdUID%></td>
+                                        <td><%=moment(data[i].createdAt).format('YYYY-MM-DD')%></td>
+
+                                        <td><a href="/board/boardModify?id=<%=data[i].id%>"><%=data[i].boardName%></a></td>
+                                        <td><%=data[i].isUseYN%></td>
+
+                                        <td><%=data[i].updatedUID%></td>
+                                        <td><%=moment(data[i].updatedAt).format('YYYY-MM-DD')%></td>
+                                    </tr>
+                                <% } %>
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <ul class="pagination pull-left"></ul>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.footable').footable();
+    });
+
+</script>

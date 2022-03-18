@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>통합관리자사이트</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <form method="post" action="/login" onsubmit="return fnFormCheck();">
+            <div>
+                <div>
+
+                    <h1 class="logo-name">TM</h1>
+
+                </div>
+                <h3>Welcome to Admin System</h3>
+        
+                    <p class="text-danger text-center"><small></small></p>
+                    <div class="form-group">
+                    <input type="text" id="adminID" name="adminID" placeholder="아이디" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="adminPWD" name="adminPWD" placeholder="암호" class="form-control">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+    
+
+                <p class="m-t"> <small>2020 &copy;통합정보관리사이트</small> </p>
+
+            </div>
+        </form>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="/js/jquery-2.1.1.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <script>
+       var msg = '<%=loginError%>';
+
+        $(document).ready(function () {
+            if(msg.length > 0){
+                alert(msg);
+            }
+        });
+
+        $("#userid").focus();
+
+        function fnFormCheck() {
+            if ($("#adminID").val() == "" || $("#adminID").val() == null) {
+                alert("아이디를 입력해주십시오.");
+                $("#adminID").focus();
+                return false;
+            }
+
+            if ($("#adminPWD").val() == "" || $("#adminPWD").val() == null) {
+                alert("비밀번호를 입력해주십시오.");
+                $("#adminPWD").focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+</body>
+
+</html>

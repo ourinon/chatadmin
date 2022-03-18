@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통합 관리자 사이트</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/js/plugins/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css">
+    <!-- <link href="/css/plugins/toastr/toastr.min.css" rel="stylesheet"> -->
+    <link href="/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+    <link href="/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="/css/plugins/footable/footable.core.css" rel="stylesheet">
+    <link href="/css/plugins/switchery/switchery.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <%- body %>
+        </div>
+    </div>
+
+    <script src="/js/jquery-2.1.1.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <script src="/js/inspinia.js"></script>
+    <script src="/js/plugins/pace/pace.min.js"></script>
+    <script src="/js/plugins/gritter/jquery.gritter.min.js"></script>
+    <!-- <script src="/js/plugins/toastr/toastr.min.js"></script> -->
+
+    <!-- Switchery -->
+    <script src="/js/plugins/switchery/switchery.js"></script>
+    <script src="/js/plugins/footable/footable.all.min.js"></script>
+
+
+    <%- script %>
+
+</body>
+<script>
+    // console.log($(location).attr('pathname'));
+    const pathname = $(location).attr('pathname');
+    const pathdetail = pathname.split('/');
+    // console.log(pathdetail);
+
+    // if (pathdetail[1] == 'chat'){
+    //     $("#menu01").attr('class','active');
+    // }else if (pathdetail[1] == 'article'){
+    //     $("#menu02").attr('class','active');
+    // }else if (pathdetail[1] == 'logs'){
+    //     $("#menu03").attr('class','active');
+    // }
+
+    if (pathname == '/chat/channels'){
+        $("#menu01").attr('class','active');
+    }else if (pathname == '/article/create'){
+        $("#menu03").attr('class','active');
+    }else if (pathname == '/chat/logs'){
+        $("#menu02").attr('class','active');
+    }
+
+</script>
+</html>

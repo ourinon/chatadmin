@@ -1,0 +1,101 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>게시판 정보관리</h2>
+        <ol class="breadcrumb">
+            <li>
+                시스템 정보관리
+            </li>
+            <li>
+                게시판 정보관리
+            </li>
+            <li>
+                <strong>등록/수정</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content">
+
+    <form id="boardform" name="boardform" action="/board/boardModify" method="post">
+
+        <div class="ibox-content m-b-sm border-bottom">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">게시판명 </label>
+                        <input type="text" name="boardname" id="boardname" class="form-control" placeholder="게시판명" value="<%=data.boardName%>"
+                           >
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">수정자</label>
+                        <input type="text" name="updateuid" id="updateuid" class="form-control" placeholder="수정자"  value="<%=data.updatedUID%>"
+                            readonly>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">수정일시</label>
+                        <input type="text" name="updatedate" id="updatedate" class="form-control" placeholder="수정일시"
+                            readonly value="<%=moment(data.updatedAt).format("YYYY-MM-DD HH:mm:ss")%>">
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label">사용여부</label>
+                        <div class="form-group">
+                            <% if(data.isUseYN == true){ %>
+                            <input type="checkbox" name="useyn" id="useyn" class="js-switch" checked>
+                            <% } else{ %>
+                            <input type="checkbox" name="useyn" id="useyn" class="js-switch">
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+
+
+
+            </div>
+
+            <div class="row aligncenter">
+                <div class="text-center">
+                    <input type="hidden" name="id" id="id" value="<%=data.id%>">
+                    <input type="hidden" name="saveMode" id="saveMode" value="<%=saveMode%>">
+                    <button type="submit" class="btn btn-primary">저장</button>
+                    <a href="/board/boards" class="btn btn-info">목록</a>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+
+<script>
+    //Switchery
+    var elem = document.querySelector('.js-switch');
+    var switchery = new Switchery(elem, { color: '#1AB394' });
+
+    $(document).ready(function () {
+
+    });
+
+    $('#boardform').submit(function () {
+        if ($("#boardname").val() == "") {
+            alert("게시판명을 입력해주세요.");
+            $("#adminid").focus();
+            return false;
+        }
+
+        return true;
+    });
+
+</script>
